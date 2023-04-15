@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041688886177",
+    "project_id": "naber-5f4c2",
+    "storage_bucket": "naber-5f4c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041688886177:android:9a3863f7d8468b2209e9e0",
+        "android_client_info": {
+          "package_name": "com.naber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041688886177-ar9581b21c80s3ed9vdcvr7arcl7krsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK2CVJ2aHooa_pblYdbOTE2aVbuCOlNsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041688886177-ar9581b21c80s3ed9vdcvr7arcl7krsp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
