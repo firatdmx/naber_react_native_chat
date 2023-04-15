@@ -1,5 +1,5 @@
 import { View, Text, TextInput, Button } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './Home.styles.js'
 import auth from '@react-native-firebase/auth'
 import Card from '../../components/Card'
@@ -42,6 +42,9 @@ reference.once('value')
     })
 }
 
+useEffect(() => {
+  checkDB()
+}, [])
 
 
 
@@ -88,7 +91,7 @@ const [datax, setDatax] = useState([])
         <FloatingButton press={() => setVisible(!visible)} />
       </View>
 
-      <Button title="checkdb" onPress={checkDB} />
+      {/* <Button title="checkdb" onPress={checkDB} /> */}
 
       <Modal 
         onSwipeComplete={onClose}
