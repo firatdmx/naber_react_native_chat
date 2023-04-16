@@ -22,6 +22,7 @@ export default styles = StyleSheet.create({
     },
     user: {
         color: "orange",
+        fontWeight: "900",
         
     },
 

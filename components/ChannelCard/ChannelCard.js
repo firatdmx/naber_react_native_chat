@@ -1,10 +1,10 @@
 import { View, Text, Pressable, Alert } from 'react-native'
 import React from 'react'
-import styles from './Card.styles.js'
+import styles from './ChannelCard.styles.js'
 
-const Card = ({title, msg}) => {
+const ChannelCard = ({title, onpress, longpress}) => {
     return (
-        <Pressable onPress={() => Alert.alert("hi", msg)}>
+        <Pressable onPress={onpress} onLongPress={longpress}>
             <View style={styles.container}>
             <Text style={styles.title}>
                 {title}
@@ -14,4 +14,4 @@ const Card = ({title, msg}) => {
     )
 }
 
-export default Card;
+export default ChannelCard;

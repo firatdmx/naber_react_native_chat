@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
+import Chat from './pages/Chat'
 import auth from '@react-native-firebase/auth'
 
 const Stack = createStackNavigator();
@@ -29,16 +30,19 @@ export default function Router() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
                 {!userSession ? 
                     (
-                        <Stack.Screen name='Login Stack' component={LoginStack} options={{headerShown:false}} /> 
+                        <Stack.Navigator>
+                            <Stack.Screen name='Login Stack' component={LoginStack} options={{headerShown:false}} /> 
+                        </Stack.Navigator>
                     ) : 
                     (
-                        <Stack.Screen name='Home Screen' component={Home} options={{headerShown:false}} />
+                        <Stack.Navigator>
+                            <Stack.Screen name='Home Screen' component={Home} options={{headerShown:false}} />
+                            <Stack.Screen name='Chat Screen' component={Chat} options={{headerShown:false}} />
+                        </Stack.Navigator>
                     )
                 }
-            </Stack.Navigator>
         </NavigationContainer>
         )
     
