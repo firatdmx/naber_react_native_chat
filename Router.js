@@ -6,6 +6,8 @@ import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Chat from './pages/Chat'
 import auth from '@react-native-firebase/auth'
+import FlashMessage from 'react-native-flash-message'
+
 
 const Stack = createStackNavigator();
 
@@ -43,6 +45,7 @@ export default function Router() {
                         </Stack.Navigator>
                     )
                 }
+                <FlashMessage position="top" />
         </NavigationContainer>
         )
     
