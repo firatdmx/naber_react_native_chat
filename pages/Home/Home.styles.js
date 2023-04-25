@@ -30,7 +30,8 @@ export default styles = StyleSheet.create({
         borderTopWidth:2,
         borderTopColor:'#FF6F0010',
         marginTop:8,
-        paddingTop:5
+        paddingTop:5,
+        alignSelf:'center'
     },
 
     buttonContainer: {

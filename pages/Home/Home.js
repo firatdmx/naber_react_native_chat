@@ -8,31 +8,37 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons.js';
 import {firebase} from '@react-native-firebase/database';
 import parseContent from '../../utils/parseContent.js';
+import Config from 'react-native-config'
 
 const Home = ({navigation}) => {
   const [visible, setVisible] = useState(false);
   const [room, setRoom] = useState('');
   const userName = auth().currentUser.email.split('@')[0];
 
-  const DBurl =
-    ' https://naber-5f4c2-default-rtdb.europe-west1.firebasedatabase.app/';
+  // const DBurl = 'https://naber-5f4c2-default-rtdb.europe-west1.firebasedatabase.app/';
 
   const checkDB = () => {
-    const reference = firebase.app().database(DBurl).ref('/channels');
+    const reference = firebase.app().database(Config.DBURL).ref('/channels');
 
     reference.once('value').then(snapshot => {
       const snp = snapshot.val();
-      setDatax(parseContent(snp));
+      if (snp) {
+        setDatax(parseContent(snp));
+      } else {
+        setDatax([])
+      }
     });
   };
 
   const listenDB = () => {
-    const reference = firebase.app().database(DBurl).ref('/channels');
+    const reference = firebase.app().database(Config.DBURL).ref('/channels');
 
     reference.on('value', snapshot => {
       const snp = snapshot.val();
       if (snp) {
         setDatax(parseContent(snp));
+      } else {
+        setDatax([])
       }
     });
   };
@@ -44,11 +50,14 @@ const Home = ({navigation}) => {
   const [datax, setDatax] = useState([]);
 
   const deleteChannel = (id) => {
-    const delRef = firebase.app().database(DBurl).ref('/channels/'+id)
-    delRef.set({
-      id:null
-    })
-    .then(navigation.navigate("Home Screen"))
+    const ref = firebase.app().database(Config.DBURL).ref('/channels/'+id).remove()
+    
+    ref.then(
+      console.log("Room deleted."),
+    )
+
+
+    
   }
 
   const renderx = ({item}) => {
@@ -59,7 +68,7 @@ const Home = ({navigation}) => {
         onpress={() => navigation.navigate('Chat Screen', channelInfo)}
         longpress={() => Alert.alert("Dikkat", "Odayı silmek istediğinizden emin misiniz?", [
           {text: 'Odayı Sil', onPress: () => deleteChannel(item.id), style: 'default' },
-          {text: 'Vazgeç', onPress: () => console.log("cancel pressed"), style: 'cancel'},
+          {text: 'Vazgeç', style: 'cancel'},
 
         ])}
       />
@@ -72,22 +81,22 @@ const Home = ({navigation}) => {
   };
 
   const addRoom = () => {
-    // update
-    const newReference = firebase.app().database(DBurl).ref('/channels').push();
+    // add
+    const newReference = firebase.app().database(Config.DBURL).ref('/channels').push();
 
     newReference
       .set({
         name: room,
       })
-      .then(() => console.log('Data updated.'));
-    //update
+      .then(() => console.log('Room added.'));
+    //add 
 
     checkDB();
     onClose();
   };
 
   const checkChannelExists = () => {
-    const reference = firebase.app().database(DBurl).ref('/channels');
+    const reference = firebase.app().database(Config.DBURL).ref('/channels');
 
     reference.once('value').then(snapshot => {
       let exists = false;
