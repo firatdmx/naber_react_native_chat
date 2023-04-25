@@ -63,7 +63,7 @@ function Chat(props) {
     const emptyChat = () => {
         return(
             <View style={styles.empty}>
-                <Text>There are no messages</Text>
+                <Text>Henüz hiç mesaj yok :(</Text>
             </View>
         )
     }
